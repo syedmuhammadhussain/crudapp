@@ -1,0 +1,249 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-color: #f5f5f5;
+}
+
+button:focus {
+    outline: none;
+}
+
+/* cs popup */
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+}
+
+body.open .overlay {
+    visibility: visible;
+    opacity: 1;
+}
+
+.popup {
+    margin: 70px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    width: 30%;
+    position: relative;
+    transition: all 2s ease-in-out;
+}
+
+.popup .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: none;
+    border: 0;
+}
+
+.popup h2, .popup .close {
+    color: #721c24;
+}
+
+.popup .content {
+    max-height: 30%;
+    overflow: auto;
+    color: #721c24;
+}
+
+.sidebar {
+    transition: .25 width ease-out;
+}
+
+.checking-spin {
+    display: flex;
+    align-items: center;
+    position: relative;
+    bottom: 18px;
+}
+
+.checking-spin span {
+    font-size: 12px;
+    margin-left: .25rem;
+    color: #3f51b5;
+}
+
+.theme-title {
+    color: #3f51b5;
+}
+
+.todo-cls input, .todo-cls button {
+    border-radius: 0;
+}
+
+.todo-cls button {
+    width: auto;
+    display: flex;
+    align-items: center;
+}
+
+.todo-cls button span {
+    font-size: inherit;
+}
+
+.cs-tab ul.nav.nav-tabs {
+    border-bottom: 0;
+    margin-bottom: 1.5rem;
+}
+
+.cs-tab ul.nav.nav-tabs a.nav-link {
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+    margin-right: 8px;
+    margin-bottom: 8px;
+    text-decoration: none;
+    transition: .25s ease-out;
+    color: #3f51b5;
+    border-radius: 4px;
+    font-weight: 500;
+    background: #fff;
+    border: 0;
+}
+
+.cs-tab ul.nav.nav-tabs a.nav-link:hover, .cs-tab ul.nav.nav-tabs a.nav-link.active {
+    background: #3f51b5;
+    color: #fff;
+}
+
+.cs-tab .tab-content p {
+    margin: 0;
+}
+
+.cs-table table {
+    width: 100%;
+}
+
+.cs-table table tr td, .cs-table table tr th {
+    padding: 10px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.cs-table table tr td:first-child, .cs-table table tr th:first-child {
+    padding-left: 30px;
+}
+
+@-webkit-keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fadeInDown {
+    -webkit-animation-name: fadeInDown;
+    animation-name: fadeInDown;
+    -webkit-animation-duration: .75s;
+    animation-duration: .75s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.close-btn-cus {
+    position: relative;
+}
+
+.close-btn-cus>span {
+    position: absolute;
+    right: -20px;
+    z-index: 2;
+    top: -20px;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 500;
+    background: #000;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 25px;
+}
+.feapopup .modal-body {
+    padding: 0;
+}
+.feapopup .modal-body .s2-2.fea {
+    margin: 0;
+    background: #fff;
+}
+.feapopup .s2-2.fea h5 {
+    font-size: 1.3rem;
+    color: #3f51b5;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    position: relative;
+    font-weight: 400;
+}
+.feapopup .s2-2.fea h5:before {
+    position: absolute;
+    content: '';
+    top: 50%;
+    transform: translateY(-50%);
+    background: #3f51b5;
+    height: 15px;
+    left: 0;
+    width: 100%;
+}
+.feapopup .s2-2.fea h5 span {
+    position: relative;
+    z-index: 1;
+    background: #fff;
+    padding: 0 8px;
+    margin-left: 30px;
+}
+.sp-cal {
+    margin: 30px;
+}
+.s2-2.fea .sp-cal h4 {
+    color: #0e3788;
+}
+.sidebar-dark .nav-item .nav-link i, .sidebar-dark .nav-item .nav-link svg {
+    color: rgba(255,255,255,.3);
+    margin-right: 5px;
+}
+.sidebar .nav-item a.nav-link.active svg {
+    color: #fff;
+}
+
+/* responsive css */
+
+@media only screen and (max-width: 767px) {
+    .popup {
+        width: 90%;
+    }
+}

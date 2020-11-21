@@ -1,0 +1,283 @@
+<div class="crud-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="pt-5 link-box">
+                    <button class="mb-2" mat-raised-button color="primary" [routerLink]="['/']">
+                        <mat-icon aria-hidden="false" aria-label="Example reply icon">
+                            reply
+                        </mat-icon>
+                        Back
+                    </button>
+                </div>
+
+                <!-- Routing -->
+                <div class="mb-5">
+
+                    <div class="cs-tab">
+                        <div class="data-list">
+                            <h2 class="theme-title">CRUD APPS Using (JSON Placeholder)</h2>
+                            <div class="cs-table dynamic-table">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <mat-form-field>
+                                            <mat-label>Filter</mat-label>
+                                            <input matInput (keyup)="applyFilter($event)" placeholder="sunt" #input>
+                                        </mat-form-field>
+                                    </div>
+                                    <div>
+                                        <button mat-raised-button color="accent">Delete</button>
+                                        <button mat-raised-button color="accent" data-toggle="modal" data-target="#addPopup" data-backdrop="static" data-keyboard="false">Add</button>
+                                    </div>
+                                </div>
+                                <div class="example-container mat-elevation-z8">
+                                    <!-- <div class="example-loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
+                                        <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+                                    </div> -->
+                                    <div class="example-table-container">
+                                        <table mat-table [dataSource]="dataSource" class="example-table" matSortActive="Title"
+                                        matSortDisableClear matSortDirection="desc" matSort>
+
+                                            <!-- ID Column -->
+                                            <ng-container matColumnDef="ID">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                                                <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                                            </ng-container>
+
+                                            <!-- userId Column -->
+                                            <ng-container matColumnDef="UserID">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header> UserID </th>
+                                                <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.userId}}
+                                                </td>
+                                            </ng-container>
+
+                                            <!-- Title Column -->
+                                            <ng-container matColumnDef="Title">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
+                                                <td mat-cell *matCellDef="let row"> {{row.title}} </td>
+                                            </ng-container>
+
+                                            <!-- Body Column -->
+                                            <ng-container matColumnDef="Body">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Body </th>
+                                                <td mat-cell *matCellDef="let row"> {{row.body}} </td>
+                                            </ng-container>
+
+                                            <!-- Option Column -->
+                                            <ng-container matColumnDef="Action">
+                                                <th *matHeaderCellDef class="mat-header-cell text-center"> Action </th>
+                                                <td *matCellDef="let row" class="mat-cell">
+                                                    <div class="ac-btn">
+                                                        <button class="btn btn-default" 
+                                                        data-toggle="modal" data-target="#editPopup" data-backdrop="static" data-keyboard="false"
+                                                        (click)="updateGetRecordByID(row)">
+                                                            <i class="fas fa-pencil-alt"></i>
+                                                        </button>
+                                                        <button class="btn btn-default"
+                                                        (click)="deletePost1(row)">
+                                                            <i class="fad fa-trash-alt"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </ng-container>
+
+                                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                                            <!-- Row shown when there is no matching data. -->
+                                            <tr>
+                                                <td>{{input.value}}</td>
+                                            </tr>
+                                            <tr class="mat-row" *matNoDataRow>
+                                                <td class="mat-cell" colspan="4">No data matching the filter
+                                                    "{{input.value}}"</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Member -->
+<div class="modal fade feapopup" id="addPopup">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="close-btn-cus">
+                <span aria-hidden="true" data-dismiss="modal" aria-label="Close">
+                    <i class="fal fa-times"></i>
+                </span>
+            </div>
+            <div class="modal-body">
+                <div class="s2-2 fea">
+                    <h5><span>ADD MEMBER</span></h5>
+                    <div class="sp-cal">
+                        <form [formGroup]="formList" #csform="ngForm">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="aef">
+                                        <div class="from-group">
+                                            <mat-form-field class="cs-wi">
+                                                <mat-label>userId</mat-label>
+                                                <input 
+                                                    matInput
+                                                    #userId
+                                                    maxlength="2"
+                                                    class="inputField" 
+                                                    type="text"
+                                                    formControlName="userId" 
+                                                    placeholder="userId"
+                                                    required>
+                                                <mat-error>Email is required</mat-error>
+                                                <mat-hint align="end">{{userId.value?.length || 0}}/2</mat-hint>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group">
+                                            <mat-form-field>
+                                                <input 
+                                                    matInput 
+                                                    #title 
+                                                    maxlength="200"
+                                                    class="inputField" 
+                                                    type="text"
+                                                    formControlName="title" 
+                                                    placeholder="Title"
+                                                    required>
+                                                <mat-error>Email is required</mat-error>
+                                                <mat-hint align="end">{{title.value?.length || 0}}/200</mat-hint>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group">
+                                            <mat-form-field>
+                                                <textarea 
+                                                    matInput 
+                                                    maxlength="500"
+                                                    #body
+                                                    cols="3"
+                                                    rows="5"
+                                                    formControlName="body"
+                                                    placeholder="Body...."
+                                                    required></textarea>
+                                                    <mat-error>Email is required</mat-error>
+                                                <mat-hint align="end">{{body.value?.length || 0}}/500</mat-hint>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="d-flex justify-content-between flex-wrap">
+                                            <button 
+                                                mat-raised-button 
+                                                color="accent" 
+                                                (click)="createList()"
+                                                [disabled]="!formList.valid">Add Member</button>
+                                            <div>
+                                                <button mat-raised-button color="default" aria-hidden="true" data-dismiss="modal" aria-label="Close">Close</button>
+                                                <!-- <button mat-raised-button color="primary" class="ml-1" (click)="reset()">Reset</button> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Member -->
+
+<div class="modal fade feapopup" id="editPopup">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="close-btn-cus">
+                <span aria-hidden="true" data-dismiss="modal" aria-label="Close">
+                    <i class="fal fa-times"></i>
+                </span>
+            </div>
+            <div class="modal-body">
+                <div class="s2-2 fea">
+                    <h5><span>UPDATE MEMBER</span></h5>
+                    <div class="sp-cal">
+                        <form [formGroup]="editList" #cseditform="ngForm">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="aef">
+                                        <div class="from-group">
+                                            <mat-form-field class="cs-wi">
+                                                <mat-label>userId</mat-label>
+                                                <input 
+                                                    matInput
+                                                    #upuserId
+                                                    [(ngModel)]="uid"
+                                                    maxlength="2"
+                                                    class="inputField" 
+                                                    type="text"
+                                                    formControlName="userId" 
+                                                    placeholder="userId"
+                                                    required>
+                                                <mat-error>Email is required</mat-error>
+                                                <mat-hint align="end">{{upuserId.value?.length || 0}}/2</mat-hint>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group">
+                                            <mat-form-field>
+                                                <input 
+                                                    matInput 
+                                                    #uptitle 
+                                                    maxlength="200"
+                                                    [(ngModel)]="utitle"
+                                                    class="inputField" 
+                                                    type="text"
+                                                    formControlName="title" 
+                                                    placeholder="Title"
+                                                    required>
+                                                <mat-error>Email is required</mat-error>
+                                                <mat-hint align="end">{{uptitle.value?.length || 0}}/200</mat-hint>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="form-group">
+                                            <mat-form-field>
+                                                <textarea 
+                                                    matInput 
+                                                    maxlength="500"
+                                                    #upbody
+                                                    cols="3"
+                                                    rows="5"
+                                                    [(ngModel)]="ubody"
+                                                    formControlName="body"
+                                                    placeholder="Body...."
+                                                    required></textarea>
+                                                    <mat-error>Email is required</mat-error>
+                                                <mat-hint align="end">{{upbody.value?.length || 0}}/500</mat-hint>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="d-flex justify-content-between flex-wrap">
+                                            <button 
+                                                mat-raised-button 
+                                                color="accent" 
+                                                (click)="updateRecord()"
+                                                [disabled]="!editList.valid">Add Member</button>
+                                            <div>
+                                                <button mat-raised-button color="default" aria-hidden="true" data-dismiss="modal" aria-label="Close">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+#wrapper, .h6, h6 {
+    font-size: 1rem;
+    font-family: 'Nunito';
+}
+.ssmall {
+    font-size: 80%;
+    font-weight: 400 !important;
+    margin-bottom: .5rem;
+}

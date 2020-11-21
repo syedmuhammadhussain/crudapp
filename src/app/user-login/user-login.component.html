@@ -1,0 +1,79 @@
+<div class="user-register">
+    <div class="container">
+        <div class="register-box">
+            <form class="example-form" #csform="ngForm" (ngSubmit)="onLogin(csform)">
+                <div class="row justify-content-center">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="ginfo">
+                            <h2 class="theme-title">User Login</h2>
+                            <div>
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Username</mat-label>
+                                    <input 
+                                        matInput 
+                                        name="username" 
+                                        ngModel 
+                                        #username="ngModel" 
+                                        required
+                                        minlength="2" 
+                                        maxlength="30" 
+                                        pattern="[A-Za-z]{1,32}">
+                                    <mat-error 
+                                        *ngIf="!username.valid && username.touched">
+                                        This field is required.
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Password</mat-label>
+                                    <input 
+                                        matInput 
+                                        type="password" 
+                                        name="password"
+                                        #password="ngModel" 
+                                        ngModel 
+                                        required>
+                                    <mat-error 
+                                        *ngIf="!password.valid && password.touched">
+                                        This field is required.
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-checkbox 
+                                    ngModel 
+                                    name="remember" 
+                                    #remember="ngModel" 
+                                    >Remember password
+                                </mat-checkbox>
+                            </div>
+                            <div class="mt-5 d-flex justify-content-between">
+                                <button 
+                                    mat-raised-button 
+                                    color="primary" 
+                                    type="submit"
+                                    [disabled]="!csform.valid">Login</button>
+                                    
+                                    <button 
+                                    mat-raised-button 
+                                    color="accent" 
+                                    [routerLink]="'/register'">Register</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="popup1" class="overlay">
+	<div class="popup">
+		<h2>{{ textMsg }}</h2>
+		<!-- <button class="close" (click)="close()">&times;</button> -->
+		<div class="content">
+			{{ textCont }}
+		</div>
+	</div>
+</div>

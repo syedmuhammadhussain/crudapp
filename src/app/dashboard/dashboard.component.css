@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i");
+
+#wrapper, .h6, h6 {
+    font-size: 1rem;
+    font-family: 'Nunito';
+}
+.bc-light {
+    border-color: #edeff5;
+}
+
+.scroll-to-top {
+    box-shadow: none;
+    border: 0;
+}
+
+.sidebar-dark .nav-item .nav-link.active > i, .sidebar-dark .nav-item .nav-link.active {
+    color: #fff;
+    font-weight: 700;
+}
+
+.sidebar .nav-item .nav-link {
+    padding: .8rem 1rem;
+}
+.sidebar hr.sidebar-divider {
+    margin-bottom: 0;
+}
+.bg-lg {
+    background-color: #e6e6e6;
+}
+.sidebar #sidebarToggle {
+    margin-top: 2rem;
+}

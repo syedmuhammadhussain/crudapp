@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="pt-4">
+        <form>
+            <div class="form-group">
+                <h2>Todo Add</h2>
+                <ng-container *ngIf="!updateCheck">
+                    <div class="d-flex todo-cls">
+                        <input 
+                            placeholder="Enter Task"    
+                            type="text" 
+                            class="form-control" 
+                            autofocus
+                            (keyup.enter)="addTopic(topic)" 
+                            #topic>
+                        <button 
+                            type="button"
+                            class="btn btn-info"
+                            (click)="addTopic(topic)">
+                                Add
+                            <span class="material-icons">add</span>
+                        </button>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="updateCheck">
+                    <div class="d-flex todo-cls">
+                        <input 
+                            placeholder="Enter Task"    
+                            type="text" 
+                            class="form-control" 
+                            [autofocus]="autofocus"
+                            name="updateValue"
+                            ngModel="{{updateValue}}"
+                            (keyup.enter)="update(topic)" 
+                            #topic>
+                        <button 
+                            type="button"
+                            class="btn btn-primary"
+                            (click)="update(topic)">
+                                Update
+                        </button>
+                    </div>
+                </ng-container>
+            </div>
+            
+            <ul class="nav flex-column cs-nav">
+                <li 
+                    class="fadeInDown item"
+                    *ngFor="let topic of topics1">
+                    <span>{{ topic.name }}</span>
+                    <span class="icons">
+                        <span 
+                            (click)="editPopup(topic)"
+                            class="material-icons">
+                            create
+                        </span>
+                        <span 
+                            #myButton
+                            (click)="removeTopic($event)"
+                            class="material-icons">
+                            clear
+                        </span>
+                    </span>
+                </li>
+            </ul>
+        </form>
+    </div>
+</div>

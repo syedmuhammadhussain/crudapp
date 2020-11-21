@@ -1,0 +1,63 @@
+<div class="reactive-form">
+    <div class="container">
+        <button 
+            class="mb-2"
+            mat-raised-button 
+            color="primary" 
+            [routerLink]="['/']">
+                <mat-icon 
+                    aria-hidden="false" 
+                    aria-label="Example reply icon">
+                        reply
+                </mat-icon> 
+            Back
+        </button>
+        <div class="rf-box">
+            <form class="example-form" [formGroup]="form">
+                <div class="row justify-content-center">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="ginfo">
+                            <h2 class="theme-title">Reactive Form</h2>
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Username</mat-label>
+                                <input 
+                                    matInput
+                                    minlength="3"
+                                    formControlName="username">
+                                <mat-error 
+                                    *ngIf="username.touched && username.invalid">
+                                    <div *ngIf="username.errors.required">This field is required.</div>
+                                    <div *ngIf="username.errors.minlength">Username should be at least {{ username.errors.minlength.requiredLength }} characters.</div>
+                                    <div *ngIf="username.errors.cannotContainSpace">Username connot contain space.</div>
+                                    <div *ngIf="username.errors.shouldBeUnique">Username already taken.</div>
+                                </mat-error>                                
+                            </mat-form-field>
+                            <div class="checking-spin" *ngIf="username.pending">
+                                <mat-spinner color="accent" diameter="15"></mat-spinner> 
+                                <span>Checking for uniqueness...</span>
+                            </div>
+                            
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Password</mat-label>
+                                <input 
+                                    matInput 
+                                    formControlName="password"
+                                    type="password">
+                                <mat-error 
+                                    *ngIf="password.touched && password.invalid">
+                                    This field is required.
+                                </mat-error>
+                            </mat-form-field>
+                            <div class="mt-5 d-flex justify-content-between">
+                                <button 
+                                    mat-raised-button 
+                                    color="primary" 
+                                    type="submit">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

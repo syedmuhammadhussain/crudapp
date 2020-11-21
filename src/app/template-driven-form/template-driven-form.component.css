@@ -1,0 +1,47 @@
+.bg-light-blue {
+    background-color: #e2e2e2;
+    padding: 3rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.form-control.ng-touched.ng-invalid {
+    border: 1px solid red;
+}
+
+.ginfo {
+    padding: 2rem 3.5rem;
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+.mt-8px {
+    margin-top: .5rem;
+}
+
+.und {
+    text-decoration: underline;
+}
+
+@media only screen and (max-width: 767px) {
+    .bg-light-blue {
+        padding: 2rem 0;
+        height: auto;
+        display: block;
+    }
+    .ginfo { 
+        padding: 1.5rem;
+    }
+    ::ng-deep .mat-checkbox-layout {
+        white-space: normal !important;
+    }
+    
+    ::ng-deep .mat-checkbox-inner-container {
+        margin-top: 3px !important;
+    }
+}

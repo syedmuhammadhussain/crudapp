@@ -1,0 +1,205 @@
+<div class="user-register">
+    <div class="container">
+        <div class="register-box">
+            <form class="example-form" #csform="ngForm" (ngSubmit)="onRegister(csform)">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 col-md-8">
+                        <div class="ginfo">
+                            <h2 class="theme-title">User Registration</h2>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>First Name</mat-label>
+                                        <input 
+                                            matInput 
+                                            name="firstName" 
+                                            ngModel 
+                                            #firstName="ngModel" 
+                                            required
+                                            minlength="2" 
+                                            maxlength="10" 
+                                            pattern="[A-Za-z]{1,32}">
+                                        <mat-error 
+                                            *ngIf="!firstName.valid && firstName.touched">
+                                            <div *ngIf="firstName.errors.required">This field is required.</div>
+                                            <div *ngIf="firstName.errors.minlength">First Name at least 2 characters.</div>
+                                            <div *ngIf="firstName.errors.pattern">Please enter valid name.</div>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Last Name</mat-label>
+                                        <input 
+                                            matInput 
+                                            name="lastName" 
+                                            ngModel 
+                                            #lastName="ngModel" 
+                                            required
+                                            minlength="3" 
+                                            maxlength="10" 
+                                            pattern="[A-Za-z]{1,32}">
+                                        <mat-error 
+                                            *ngIf="!lastName.valid && lastName.touched">
+                                            <div *ngIf="lastName.errors.required">This field is required.</div>
+                                            <div *ngIf="lastName.errors.minlength">Last Name at least 3 characters.</div>
+                                            <div *ngIf="lastName.errors.pattern">Please enter valid name.</div>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-12">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Username</mat-label>
+                                        <input 
+                                            matInput name="username" 
+                                            ngModel 
+                                            minlength="5"
+                                            maxlength="30"
+                                            #username="ngModel" 
+                                            required
+                                            pattern="[A-Za-z0-9._]{1,32}">
+                                        <mat-error 
+                                            *ngIf="!username.valid && username.touched">
+                                            <div *ngIf="username.errors.required">This field is required.</div>
+                                            <div *ngIf="username.errors.pattern">Only underscores are allowed.</div>
+                                            <div *ngIf="username.errors.minlength">Username must be at least 5 characters.</div>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-12">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Email</mat-label>
+                                        <input 
+                                            matInput name="email" 
+                                            ngModel 
+                                            #email="ngModel" 
+                                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                            required>
+                                        <mat-error 
+                                            *ngIf="email.touched">
+                                            <div *ngIf="email.errors?.required">
+                                                This field is required.
+                                            </div>
+                                            <div *ngIf="email.errors?.pattern">
+                                                This is not a valid Email!
+                                            </div>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Password</mat-label>
+                                        <input 
+                                            matInput 
+                                            type="password" 
+                                            name="password"
+                                            #password="ngModel" 
+                                            ngModel 
+                                            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"
+                                            required>
+                                        <mat-error 
+                                            *ngIf="!password.valid && password.touched">
+                                            <div *ngIf="password.errors.required">This field is required.</div>
+                                            <div *ngIf="password.errors.pattern">Password must be an UpperCase, LowerCase and Number).</div>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Confirm Password</mat-label>
+                                        <input 
+                                            matInput 
+                                            type="password" 
+                                            ngValidateEqual="password" 
+                                            #confirmPassword="ngModel" 
+                                            name="confirmPassword" 
+                                            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"
+                                            ngModel
+                                            required>
+                                        <mat-error 
+                                            *ngIf="(confirmPassword.dirty || confirmPassword.touched) && confirmPassword.invalid">
+                                            <div *ngIf="confirmPassword.errors?.required">
+                                                This field is required.
+                                            </div>
+                                            <div *ngIf="confirmPassword.hasError('notEqual') && password.valid">
+                                                Passwords not Match
+                                            </div>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Gander</mat-label>
+                                        <mat-select 
+                                            name="gender" 
+                                            ngModel 
+                                            #gender="ngModel" 
+                                            required>
+                                            <mat-option 
+                                                *ngFor="let gender of Gender" 
+                                                [value]="gender.id">
+                                                {{gender.name}}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error 
+                                            *ngIf="!gender.valid && gender.touched">
+                                            This field is required.
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field>
+                                        <mat-label>Date of Birth</mat-label>
+                                        <input 
+                                            matInput 
+                                            [matDatepicker]="picker"
+                                            ngModel
+                                            name="DOB"
+                                            #DOB="ngModel"
+                                            required>
+                                        <mat-datepicker-toggle 
+                                            matSuffix 
+                                            [for]="picker">
+                                        </mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                        <mat-error 
+                                            *ngIf="!DOB.valid && DOB.touched">
+                                            This field is required.
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="mt-5 d-flex justify-content-between">
+                                        <mat-checkbox 
+                                            ngModel 
+                                            name="isSubscribed" 
+                                            #isSubscribed="ngModel" 
+                                            required>
+                                            I do accept the
+                                            <a href="#" class="und">Terms and Conditon</a>
+                                            of your site.
+                                        </mat-checkbox>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="mt-3 d-flex justify-content-between">
+                                        <button 
+                                            mat-raised-button 
+                                            color="primary" 
+                                            type="submit"
+                                            [disabled]="!csform.valid">Register</button>
+
+                                        <button 
+                                            mat-raised-button 
+                                            color="accent" 
+                                            [routerLink]="'/login'">Login</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
